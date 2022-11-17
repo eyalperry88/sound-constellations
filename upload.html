@@ -28,9 +28,10 @@
 
 <body>
 
-  <div style="text-align: center; padding-top:100px;"  >
-    <button id="record" style="display: inline-block; margin-bottom: 100px; width:200px; height: 200px ">START RECORDING</button> <br/>
-    <button id="upload" style="display: inline-block; width:200px; height: 100px " disabled>UPLOAD</button>
+  <div style="text-align: center; padding-top:50px;"  >
+    <button id="record" style="display: inline-block; margin-bottom: 50px; width:200px; height: 200px ">START RECORDING</button> <br/>
+    <button id="upload" style="display: inline-block;margin-bottom: 50px; width:200px; height: 100px;" disabled>UPLOAD</button><br/>
+    <button id="map" style="display: inline-block; width:200px; height: 50px;">GO TO MAP</button>
   </div>
 </body>
 
@@ -77,6 +78,10 @@
       soundFile = true;
       document.getElementById("upload").disabled = true;
     }
+  }
+
+  document.getElementById('map').onclick = function(){  
+    window.location = "/";
   }
 
 </script>

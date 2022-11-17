@@ -1,23 +1,23 @@
 
 // // Your web app's Firebase configuration
-var firebaseConfig = {
-  apiKey: "AIzaSyBcWe42sioCcnpknigrdBL0gAEJtAK2JD0",
-  authDomain: "ruangrupa.firebaseapp.com",
-  databaseURL: "https://ruangrupa.firebaseio.com",
-  projectId: "ruangrupa",
-  storageBucket: "ruangrupa.appspot.com",
-  messagingSenderId: "582756113281",
-  appId: "1:582756113281:web:baa4620eae557cd828e680"
-};
+// var firebaseConfig = {
+//   apiKey: "AIzaSyBcWe42sioCcnpknigrdBL0gAEJtAK2JD0",
+//   authDomain: "ruangrupa.firebaseapp.com",
+//   databaseURL: "https://ruangrupa.firebaseio.com",
+//   projectId: "ruangrupa",
+//   storageBucket: "ruangrupa.appspot.com",
+//   messagingSenderId: "582756113281",
+//   appId: "1:582756113281:web:baa4620eae557cd828e680"
+// };
 
-// // const firebaseConfig = {
-// //   apiKey: "AIzaSyA0uLhGZHEW5fbGCNI2E8yImHjNegAa5-4",
-// //   authDomain: "nine-nine-f-sounds.firebaseapp.com",
-// //   projectId: "nine-nine-f-sounds",
-// //   storageBucket: "nine-nine-f-sounds.appspot.com",
-// //   messagingSenderId: "1044592267977",
-// //   appId: "1:1044592267977:web:ab48b3afb6d2bcb8817318"
-// // };
+const firebaseConfig = {
+  apiKey: "AIzaSyA0uLhGZHEW5fbGCNI2E8yImHjNegAa5-4",
+  authDomain: "nine-nine-f-sounds.firebaseapp.com",
+  projectId: "nine-nine-f-sounds",
+  storageBucket: "nine-nine-f-sounds.appspot.com",
+  messagingSenderId: "1044592267977",
+  appId: "1:1044592267977:web:ab48b3afb6d2bcb8817318"
+};
 // // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
@@ -45,7 +45,7 @@ function fetchRecords (callback) {
       //console.log(itemRef.name);
         fetchedRecords.push(itemRef.name);
     });
-    //console.log(fetchedRecords.join('\n'))
+    console.log(fetchedRecords.join('\n'))
     callback(fetchedRecords);
   }).catch(function(error) {
     console.log(error)

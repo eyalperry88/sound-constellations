@@ -12,6 +12,7 @@
       background-color: #000;
     }
   </style>
+  <script src="https://code.jquery.com/jquery-3.6.1.slim.min.js" integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA=" crossorigin="anonymous"></script>
   <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-storage.js"></script>
 
@@ -28,9 +29,56 @@
 <body>
 
   <div style="text-align: center; padding-top:100px;"  >
-    <button id="record" style="display: inline-block; margin-bottom: 100px; width:200px; height: 200px ">RECORD</button> <br/>
-    <button id="upload" style="display: inline-block; width:200px; height: 100px ">UPLOAD</button>
+    <button id="record" style="display: inline-block; margin-bottom: 100px; width:200px; height: 200px ">START RECORDING</button> <br/>
+    <button id="upload" style="display: inline-block; width:200px; height: 100px " disabled>UPLOAD</button>
   </div>
 </body>
+
+<script>
+  var recorder, mic, soundFile;
+  var isRecording = false;
+
+  function setup() {
+    mic = new p5.AudioIn();
+    mic.start()
+
+    // create a sound recorder
+    recorder = new p5.SoundRecorder();
+
+    // connect the mic to the recorder
+    recorder.setInput(mic);
+
+    soundFile = new p5.SoundFile();
+  }
+
+  document.getElementById('record').onclick = function(){  
+    userStartAudio();
+
+    if (isRecording) {
+      document.getElementById('record').innerHTML = "START RECORDING";
+      isRecording = false;
+
+      // stop recordding
+      recorder.stop();
+      document.getElementById("upload").disabled = false;
+
+    } else {
+      document.getElementById('record').innerHTML = "STOP RECORDING";
+      isRecording = true;
+
+      // start recordimg
+      recorder.record(soundFile);
+    }
+  }
+
+  document.getElementById('upload').onclick = function(){  
+    if (soundFile) {
+      uploadRecord(soundFile.getBlob());
+      soundFile = true;
+      document.getElementById("upload").disabled = true;
+    }
+  }
+
+</script>
 
 </html>

@@ -14,4 +14,6 @@ Node.JS, npm
 
 `npm run start`
 
-then go to http://localhost:8080
+then go to http://localhost:8080 for the map
+
+and http://localhost:8080/upload to upload new content

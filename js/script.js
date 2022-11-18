@@ -81,7 +81,7 @@ class Particle {
 
 
                     //shrinks the outter ring
-                    if(this.rr > 30) {
+                    if(this.rr > (30 + TINY_STAR_RADIUS)) {
                         this.rr -= 4.5
                       }
       //r = TINY_STAR_RADIUS + this.r * Math.pow(Math.sin(this.freq * (t - this.tOffset) * Math.PI), 2);

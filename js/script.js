@@ -92,7 +92,7 @@ class Particle {
 
         //increases radius until it reaches large star radius
         if(this.rr < LARGE_STAR_RADIUS ) {
-            this.rr += 4.5
+            this.rr += 6.5
       }
       //r = 4 * TINY_STAR_RADIUS + 2 * this.r * Math.pow(Math.sin(this.freq * (t - this.tOffset) * Math.PI), 2);
       //fill('rgba(200,200,200,0.9)');
@@ -171,7 +171,7 @@ function draw() {
 }
 
 // When the user clicks the mouse
-function touchEnded() {
+function touchStarted() {
   // Check if mouse is inside the circle
     let t = millis() * 0.001;
 
@@ -181,11 +181,11 @@ function touchEnded() {
         d = dist(mouseX, mouseY, particles[i].x, particles[i].y);
         if (d < particles[i].r + 20) {
         if (particles[i].isPlaying == 1){
-            particles[i].isPlaying = 0;
-            console.log("Pause audio:", particles[i].audio);
-            if (particles[i].sound) {
-                particles[i].sound.pause();
-            }
+            // particles[i].isPlaying = 0;
+            // console.log("Pause audio:", particles[i].audio);
+            // if (particles[i].sound) {
+            //     particles[i].sound.pause();
+            // }
         } else {
             particles[i].isPlaying = 1;
             console.log("Play audio:", particles[i].audio);

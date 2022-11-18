@@ -31,7 +31,7 @@ class Particle {
   constructor(x, y, xSpeed, ySpeed, audio, tOffset){
     this.x = x;
     this.y = y;
-    this.r = random(5,12);
+    this.r = random(10,20);
     this.rr = random(60,90); //new value for radius
     this.freq = random(0.1,0.6);
     this.xSpeed = xSpeed; //random(-0.2,0.2);
@@ -108,7 +108,7 @@ class Particle {
     push();
     fill(this.dotColor);
     tint(255, 127);
-    circle(this.x,this.y, this.r-10);
+    circle(this.x,this.y, this.r-20);
     pop();
     tint(255, 127);
     imageMode(CENTER);

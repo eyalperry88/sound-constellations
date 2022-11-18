@@ -92,7 +92,7 @@ class Particle {
 
         //increases radius until it reaches large star radius
         if(this.rr < LARGE_STAR_RADIUS ) {
-        this.rr += 8.5
+            this.rr += 4.5
       }
       //r = 4 * TINY_STAR_RADIUS + 2 * this.r * Math.pow(Math.sin(this.freq * (t - this.tOffset) * Math.PI), 2);
       //fill('rgba(200,200,200,0.9)');
@@ -171,7 +171,7 @@ function draw() {
 }
 
 // When the user clicks the mouse
-function touchStarted() {
+function touchEnded() {
   // Check if mouse is inside the circle
     let t = millis() * 0.001;
 

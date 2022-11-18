@@ -31,7 +31,7 @@ class Particle {
   constructor(x, y, xSpeed, ySpeed, audio, tOffset){
     this.x = x;
     this.y = y;
-    this.r = random(6,12) + 10;
+    this.r = random(6,12) + 100;
     this.rr = random(60,90); //new value for radius
     this.freq = random(0.1,0.6);
     this.xSpeed = xSpeed; //random(-0.2,0.2);

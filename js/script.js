@@ -101,7 +101,7 @@ class Particle {
             this.rr += 2
             this.tOffset = t;
         } else {
-            this.rr = 3 * TINY_STAR_RADIUS + 4 * this.r * Math.pow(Math.sin(this.freq * (t - this.tOffset) * Math.PI), 2);
+            this.rr = 3 * TINY_STAR_RADIUS + 3 * this.r * Math.pow(Math.sin(this.freq * (t - this.tOffset) * Math.PI), 2);
         }
       //
       //fill('rgba(200,200,200,0.9)');

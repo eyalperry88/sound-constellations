@@ -1,12 +1,27 @@
 const PARTICLES_PER_RECORDING = 4;
-const TINY_STAR_RADIUS = 2;
+const TINY_STAR_RADIUS = 60;
+const LARGE_STAR_RADIUS = 240;
 
 let t = 0;
 
 let particles = [];
 
+let o_grad
+let y_grad
+let p_grad
+let b_grad
+
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
+}
+
+//loads in pre-designed images for the out most rings
+function preload(){
+  o_grad = loadImage('o_grad.png');
+  y_grad = loadImage('y_grad.png');
+  p_grad = loadImage('p_grad.png');
+  b_grad = loadImage('b_grad.png');
+  
 }
 
 // this class describes the properties of a single particle.
@@ -17,6 +32,7 @@ class Particle {
     this.x = x;
     this.y = y;
     this.r = random(5,12);
+    this.rr = random(60,90); //new value for radius
     this.freq = random(0.1,0.6);
     this.xSpeed = xSpeed; //random(-0.2,0.2);
     this.ySpeed = ySpeed; //random(-0.1,0.15);
@@ -24,20 +40,72 @@ class Particle {
     this.isPlaying = 0;
     this.tOffset = tOffset;
     this.sound = null;
+
+    //picks random number to assign some colour to the inner and outter circles
+    let flipCoin = random([1, 2, 3, 4]);
+    if(flipCoin==1){
+      this.imageFile = o_grad;
+    }
+    if(flipCoin==2){
+      this.imageFile = y_grad;
+    }
+    if(flipCoin==3){
+      this.imageFile = b_grad;
+    }
+    if(flipCoin==4){
+      this.imageFile = p_grad;
+    }
+    let flipCoin2 = random([1, 2, 3, 4]);
+    if(flipCoin2==1){
+      this.dotColor = color('#E6ED80');
+    }
+    if(flipCoin2==2){
+      this.dotColor = color('#FFC9F0');
+    }
+    if(flipCoin2==3){
+      this.dotColor = color('#53DDD8');
+    }
+    if(flipCoin2==4){
+      this.dotColor = color('#FE9142');
+    }
   }
 
 // draw of a particle.
   drawParticle(t) {
     noStroke();
     let r;
+
+    //non-clicked stars
     if (this.isPlaying == 0) {
-      r = TINY_STAR_RADIUS + this.r * Math.pow(Math.sin(this.freq * (t - this.tOffset) * Math.PI), 2);
-      fill('rgba(200,200,200,0.6)');
-    } else {
-      r = 4 * TINY_STAR_RADIUS + 2 * this.r * Math.pow(Math.sin(this.freq * (t - this.tOffset) * Math.PI), 2);
-      fill('rgba(200,200,200,0.9)');
+
+      //shrinks the outter ring
+        if(this.rr > 30) {
+        this.rr -= 4.5
+      }
+      //r = TINY_STAR_RADIUS + this.r * Math.pow(Math.sin(this.freq * (t - this.tOffset) * Math.PI), 2);
+      //fill('rgba(200,200,200,0.6)');
+      this.rr = 30 * Math.pow(Math.sin(this.freq * (t - this.tOffset) * Math.PI), 2)+TINY_STAR_RADIUS;
+    } 
+
+    //Clicked stars
+    else {
+
+        //increases radius until it reaches large star radius
+        if(this.rr < LARGE_STAR_RADIUS ) {
+        this.rr += 4.5
+      }
+      //r = 4 * TINY_STAR_RADIUS + 2 * this.r * Math.pow(Math.sin(this.freq * (t - this.tOffset) * Math.PI), 2);
+      //fill('rgba(200,200,200,0.9)');
     }
-    circle(this.x,this.y, r);
+    push();
+    fill(this.dotColor);
+    tint(255, 127);
+    circle(this.x,this.y, 15);
+    pop();
+    tint(255, 127);
+    imageMode(CENTER);
+    image(this.imageFile, this.x, this.y, this.rr, this.rr);
+    
   }
 
 // setting the particle in motion.
@@ -55,7 +123,7 @@ class Particle {
   joinParticles(particles, micLevel) {
     particles.forEach(element =>{
       let dis = dist(this.x,this.y,element.x,element.y);
-      if(dis < windowWidth / 20) {
+      if(dis < windowWidth / 60) {
         stroke('rgba(255,255,255,0.08)');
         line(this.x,this.y,element.x,element.y);
       }

@@ -30,6 +30,7 @@
 
   <div style="text-align: center; padding-top:50px;"  >
     <button id="record" style="display: inline-block; margin-bottom: 50px; width:200px; height: 200px ">START RECORDING</button> <br/>
+    <button id="upload_file" style="display: inline-block; margin-bottom: 50px; width:200px; height: 100 ">UPLOAD FILE</button> <br/>
     <button id="upload" style="display: inline-block;margin-bottom: 50px; width:200px; height: 100px;" disabled>UPLOAD</button><br/>
     <button id="map" style="display: inline-block; width:200px; height: 50px;">GO TO MAP</button>
   </div>
@@ -72,6 +73,10 @@
     }
   }
 
+  document.getElementById('upload_file').onclick = function(){
+      readFile(files);
+  }
+
   document.getElementById('upload').onclick = function(){  
     if (soundFile) {
       uploadRecord(soundFile.getBlob());
@@ -82,6 +87,26 @@
 
   document.getElementById('map').onclick = function(){  
     window.location = "/";
+  }
+
+  function readFile(files) {
+    var fileReader = new FileReader();
+      fileReader.readAsArrayBuffer(files[0]);
+      fileReader.onload = function(e) {
+        playAudioFile(e.target.result);
+        console.log(("Filename: '" + files[0].name + "'"), ( "(" + ((Math.floor(files[0].size/1024/1024*100))/100) + " MB)" ));
+      }
+  }
+
+  function playAudioFile(file) {
+    var context = new window.AudioContext();
+      context.decodeAudioData(file, function(buffer) {
+        var source = context.createBufferSource();
+          source.buffer = buffer;
+          source.loop = false;
+          source.connect(context.destination);
+          source.start(0); 
+      });
   }
 
 </script>

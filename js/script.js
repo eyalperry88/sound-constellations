@@ -169,7 +169,7 @@ function setup() {
 
 function draw() {
 
-    background('#000'); // #000 ?
+    background('#000065'); // #000 ?
     t = millis() * 0.001;
 
     for(let i = 0;i<particles.length;i++) {

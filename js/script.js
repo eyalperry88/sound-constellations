@@ -97,7 +97,7 @@ class Particle {
     else {
 
         //increases radius until it reaches large star radius
-        if(this.rr < 3 * TINY_STAR_RADIUS ) {
+        if(this.rr < LARGE_STAR_RADIUS) {
             this.rr += 4
         } else {
             this.rr = 3 * TINY_STAR_RADIUS + 6 * this.r * Math.pow(Math.sin(this.freq * (t - this.tOffset) * Math.PI), 2);

@@ -78,13 +78,19 @@ class Particle {
     //non-clicked stars
     if (this.isPlaying == 0) {
 
-      //shrinks the outter ring
-        if(this.rr > 30) {
-        this.rr -= 4.5
-      }
+
+
+                    //shrinks the outter ring
+                    if(this.rr > 30) {
+                        this.rr -= 4.5
+                      }
       //r = TINY_STAR_RADIUS + this.r * Math.pow(Math.sin(this.freq * (t - this.tOffset) * Math.PI), 2);
       //fill('rgba(200,200,200,0.6)');
-      this.rr = 30 * Math.pow(Math.sin(this.freq * (t - this.tOffset) * Math.PI), 2)+TINY_STAR_RADIUS;
+      else{
+        this.rr = 30 * Math.pow(Math.sin(this.freq * (t - this.tOffset) * Math.PI), 2)+TINY_STAR_RADIUS;
+      }
+
+
     } 
 
     //Clicked stars

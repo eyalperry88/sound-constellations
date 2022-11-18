@@ -108,7 +108,7 @@ class Particle {
     push();
     fill(this.dotColor);
     tint(255, 127);
-    circle(this.x,this.y, 15);
+    circle(this.x,this.y, this.r-20);
     pop();
     tint(255, 127);
     imageMode(CENTER);

@@ -134,7 +134,7 @@ class Particle {
 
 
 function setup() {
-    fullscreen(1);
+    fullscreen(true);
     createCanvas(windowWidth - 10, windowHeight - 10);
 
     // load audio recordings
@@ -179,7 +179,7 @@ function touchStarted() {
     let d = 0;
     for(let i = 0;i<particles.length;i++) {
         d = dist(mouseX, mouseY, particles[i].x, particles[i].y);
-        if (d < particles[i].r + 5) {
+        if (d < particles[i].r + 10) {
         if (particles[i].isPlaying == 1){
             particles[i].isPlaying = 0;
             console.log("Pause audio:", particles[i].audio);

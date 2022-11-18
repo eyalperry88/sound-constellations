@@ -179,7 +179,7 @@ function touchEnded() {
     let d = 0;
     for(let i = 0;i<particles.length;i++) {
         d = dist(mouseX, mouseY, particles[i].x, particles[i].y);
-        if (d < particles[i].r + 10) {
+        if (d < particles[i].r + 20) {
         if (particles[i].isPlaying == 1){
             particles[i].isPlaying = 0;
             console.log("Pause audio:", particles[i].audio);

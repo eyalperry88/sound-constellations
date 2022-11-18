@@ -31,7 +31,7 @@ class Particle {
   constructor(x, y, xSpeed, ySpeed, audio, tOffset){
     this.x = x;
     this.y = y;
-    this.r = random(6,12) + 100;
+    this.r = random(16,18);
     this.rr = random(60,90); //new value for radius
     this.freq = random(0.1,0.6);
     this.xSpeed = xSpeed; //random(-0.2,0.2);
@@ -100,7 +100,7 @@ class Particle {
         if(this.rr < 4 * TINY_STAR_RADIUS ) {
             this.rr += 4
         } else {
-            this.rr = 4 * TINY_STAR_RADIUS + 6 * this.r * Math.pow(Math.sin(this.freq * (t - this.tOffset) * Math.PI), 2);
+            this.rr = 4 * TINY_STAR_RADIUS + 6 * 30 * Math.pow(Math.sin(this.freq * (t - this.tOffset) * Math.PI), 2);
         }
       //
       //fill('rgba(200,200,200,0.9)');
@@ -108,7 +108,7 @@ class Particle {
     push();
     fill(this.dotColor);
     tint(255, 127);
-    circle(this.x,this.y, this.r-20);
+    circle(this.x,this.y, this.r);
     pop();
     tint(255, 127);
     imageMode(CENTER);

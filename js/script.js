@@ -134,6 +134,7 @@ class Particle {
 
 
 function setup() {
+    fullscreen(1);
     createCanvas(windowWidth - 10, windowHeight - 10);
 
     // load audio recordings

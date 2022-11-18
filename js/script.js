@@ -1,5 +1,5 @@
 const PARTICLES_PER_RECORDING = 4;
-const TINY_STAR_RADIUS = 60;
+const TINY_STAR_RADIUS = 100;
 const LARGE_STAR_RADIUS = 240;
 
 let t = 0;

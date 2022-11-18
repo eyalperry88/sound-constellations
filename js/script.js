@@ -170,7 +170,7 @@ function draw() {
 }
 
 // When the user clicks the mouse
-function mousePressed() {
+function touchStarted() {
   // Check if mouse is inside the circle
     let t = millis() * 0.001;
 

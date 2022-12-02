@@ -117,7 +117,7 @@ class Particle {
 
         //increases radius until it reaches large star radius
         if(this.rr < 3 * TINY_STAR_RADIUS) {
-            this.rr += 4.5;
+            this.rr += 10.5;
             this.tOffset = t;
 
         } else {

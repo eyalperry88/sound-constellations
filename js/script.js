@@ -4,6 +4,7 @@ const LARGE_STAR_RADIUS = 240;
 let TINY_STAR_RADIUS = 100;
 
 let t = 0;
+let tinyR;
 
 let particles = [];
 
@@ -37,7 +38,7 @@ class Particle {
   constructor(x, y, xSpeed, ySpeed, audio, tOffset){
     this.x = x;
     this.y = y;
-    this.r = random(16,24); //previous value for radius, I think it's not used
+    this.r = random(5,15); //previous value for radius, I think it's not used
     this.rr = random(60,90); //new value for radius
     this.freq = random(0.1,0.6);
     this.xSpeed = xSpeed; //random(-0.2,0.2);
@@ -125,13 +126,13 @@ class Particle {
     }
 
     //create dot for the centre of the blob
+    //set sized relative to window width
     push();
     fill(this.dotColor);
     tint(255, 127);
-    let tinyR = windowWidth/36+ (random(5,15))
-    circle(this.x,this.y, this.r);
+    tinyR = windowWidth/100 + this.r;
+    circle(this.x,this.y, tinyR);
     pop();
-
     //place image around centre of dot
     tint(255, 127);
     imageMode(CENTER);
@@ -187,7 +188,7 @@ function setup() {
             }
             
     });
-
+    print(tinyR)
     print(windowWidth, windowHeight)
     print(windowWidth/10);
 }

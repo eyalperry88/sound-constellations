@@ -1,5 +1,5 @@
-const PARTICLES_PER_RECORDING = 2;
-const TINY_STAR_RADIUS = 80;
+const PARTICLES_PER_RECORDING = 3;
+const TINY_STAR_RADIUS = 120;
 const LARGE_STAR_RADIUS = 240;
 
 let t = 0;
@@ -36,7 +36,7 @@ class Particle {
   constructor(x, y, xSpeed, ySpeed, audio, tOffset){
     this.x = x;
     this.y = y;
-    this.r = random(16,24);
+    this.r = random(16,24); //previous value for radius, I think it's not used
     this.rr = random(60,90); //new value for radius
     this.freq = random(0.1,0.6);
     this.xSpeed = xSpeed; //random(-0.2,0.2);
@@ -49,16 +49,16 @@ class Particle {
     //picks random number to assign image file to the outer circles
     let flipCoin = random([1, 2, 3, 4, 5, 6]);
     if(flipCoin==1){
-      this.imageFile = o_grad;
+      this.imageFile = grad_1;
     }
     if(flipCoin==2){
-      this.imageFile = y_grad;
+      this.imageFile = grad_2;
     }
     if(flipCoin==3){
-      this.imageFile = b_grad;
+      this.imageFile = grad_3;
     }
     if(flipCoin==4){
-      this.imageFile = p_grad;
+      this.imageFile = grad_4;
     }
     if(flipCoin==5){
       this.imageFile = grad_5;
@@ -88,7 +88,7 @@ class Particle {
     }
   }
 
-// draw of a particle.
+// draw a particle.
   drawParticle(t) {
     noStroke();
     let r;
@@ -96,19 +96,15 @@ class Particle {
     //non-clicked stars
     if (this.isPlaying == 0) {
 
+        //shrinks the outter ring when it becomes unclicked
+        if(this.rr > (30 + TINY_STAR_RADIUS)) {
+            this.rr -= 4.5
+          }
 
-
-                    //shrinks the outter ring
-                    if(this.rr > (30 + TINY_STAR_RADIUS)) {
-                        this.rr -= 4.5
-                      }
-      //r = TINY_STAR_RADIUS + this.r * Math.pow(Math.sin(this.freq * (t - this.tOffset) * Math.PI), 2);
-      //fill('rgba(200,200,200,0.6)');
-      else{
-        this.rr = 30 * Math.pow(Math.sin(this.freq * (t - this.tOffset) * Math.PI), 2)+TINY_STAR_RADIUS;
-      }
-
-
+        //creates oscillation while dormant
+        else{
+          this.rr = 30 * Math.pow(Math.sin(this.freq * (t - this.tOffset) * Math.PI), 2)+TINY_STAR_RADIUS;
+        }
     } 
 
     //Clicked stars
@@ -118,17 +114,20 @@ class Particle {
         if(this.rr < 3 * TINY_STAR_RADIUS) {
             this.rr += 4.5;
             this.tOffset = t;
+
         } else {
             this.rr = 3 * TINY_STAR_RADIUS + 3 * this.r * Math.pow(Math.sin(this.freq * (t - this.tOffset) * Math.PI), 2);
         }
-      //
-      //fill('rgba(200,200,200,0.9)');
     }
+
+    //create dot for the centre of the blob
     push();
     fill(this.dotColor);
     tint(255, 127);
     circle(this.x,this.y, this.r);
     pop();
+
+    //place image around centre of dot
     tint(255, 127);
     imageMode(CENTER);
     image(this.imageFile, this.x, this.y, this.rr, this.rr);
@@ -147,6 +146,7 @@ class Particle {
 
 // this function creates the connections(lines)
 // between particles which are less than a certain distance apart
+// Not used currrently
   joinParticles(particles, micLevel) {
     particles.forEach(element =>{
       let dis = dist(this.x,this.y,element.x,element.y);

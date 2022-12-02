@@ -93,7 +93,7 @@ class Particle {
   drawParticle(t) {
 
     TINY_STAR_RADIUS = windowWidth/12;
-    
+
     noStroke();
     let r;
 
@@ -128,6 +128,7 @@ class Particle {
     push();
     fill(this.dotColor);
     tint(255, 127);
+    let tinyR = windowWidth/36+ (random(5,15))
     circle(this.x,this.y, this.r);
     pop();
 

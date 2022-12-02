@@ -1,6 +1,7 @@
-const PARTICLES_PER_RECORDING = 3;
-const TINY_STAR_RADIUS = 120;
+const PARTICLES_PER_RECORDING = 2;
+//const TINY_STAR_RADIUS = 100;
 const LARGE_STAR_RADIUS = 240;
+let TINY_STAR_RADIUS = 100;
 
 let t = 0;
 
@@ -90,6 +91,9 @@ class Particle {
 
 // draw a particle.
   drawParticle(t) {
+
+    TINY_STAR_RADIUS = windowWidth/12;
+    
     noStroke();
     let r;
 
@@ -169,11 +173,13 @@ function setup() {
         print("got records");
         for (let i = 0; i < fetchedRecords.length; i++) {
             for (j = 0; j < PARTICLES_PER_RECORDING; j++) {
+
+              //Particle constructor (x, y, xSpeed, ySpeed, audio, tOffset)
                 particles.push(new Particle(
                     random(0, windowWidth),
                     random(0, windowHeight),
-                    random(-0.2,0.2),
-                    random(-0.1,0.15),
+                    random(-0.5,0.5),
+                    random(-0.3,0.35),
                     fetchedRecords[i],
                     10));
                 }
@@ -182,6 +188,7 @@ function setup() {
     });
 
     print(windowWidth, windowHeight)
+    print(windowWidth/10);
 }
 
 

@@ -6,21 +6,26 @@ let t = 0;
 
 let particles = [];
 
-let o_grad
-let y_grad
-let p_grad
-let b_grad
+let grad_1
+let grad_2
+let grad_3
+let grad_4
+let grad_5
+let grad_6
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
 
+//visualization uses png files of gradients
 //loads in pre-designed images for the out most rings
 function preload(){
-  o_grad = loadImage('o_grad.png');
-  y_grad = loadImage('y_grad.png');
-  p_grad = loadImage('p_grad.png');
-  b_grad = loadImage('b_grad.png');
+  grad_1 = loadImage('grad_1.png');
+  grad_2 = loadImage('grad_2.png');
+  grad_3 = loadImage('grad_3.png');
+  grad_4 = loadImage('grad_4.png');
+  grad_5 = loadImage('grad_5.png');
+  grad_6 = loadImage('grad_6.png');
   
 }
 
@@ -41,8 +46,8 @@ class Particle {
     this.tOffset = tOffset;
     this.sound = null;
 
-    //picks random number to assign some colour to the inner and outter circles
-    let flipCoin = random([1, 2, 3, 4]);
+    //picks random number to assign image file to the outer circles
+    let flipCoin = random([1, 2, 3, 4, 5, 6]);
     if(flipCoin==1){
       this.imageFile = o_grad;
     }
@@ -55,7 +60,14 @@ class Particle {
     if(flipCoin==4){
       this.imageFile = p_grad;
     }
-    let flipCoin2 = random([1, 2, 3, 4]);
+    if(flipCoin==5){
+      this.imageFile = grad_5;
+    }
+    if(flipCoin==6){
+      this.imageFile = grad_6;
+    }
+     //picks random number to assign some colour to the inner
+    let flipCoin2 = random([1, 2, 3, 4, 5, 6]);
     if(flipCoin2==1){
       this.dotColor = color('#E6ED80');
     }
@@ -67,6 +79,12 @@ class Particle {
     }
     if(flipCoin2==4){
       this.dotColor = color('#FE9142');
+    }
+    if(flipCoin2==5){
+      this.dotColor = color('#A68FFF');
+    }
+    if(flipCoin2==6){
+      this.dotColor = color('#FFC9F0');
     }
   }
 
